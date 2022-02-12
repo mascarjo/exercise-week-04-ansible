@@ -1,0 +1,22 @@
+[all:vars]
+ansible_user=johans
+ansible_password=P@ssw0rd
+
+[routers:children]
+cisco
+
+[cisco]
+rtr1 private_ip=192.168.20.1
+rtr2 private_ip=192.168.20.2
+
+[cisco:vars]
+ansible_user=johans
+ansible_network_os=ios
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
+ansible_sudo_password=P@ssword
+
+[dc1]
+jmr1
+jmr2
