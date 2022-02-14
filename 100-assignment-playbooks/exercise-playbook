@@ -15,3 +15,12 @@
           This is Johans' login banner
           Welcome to {{ inventory_hostname }}
         state: present
+    - name: Configure SNMP
+      cisco.ios.config:
+        commands:
+          -  snmp-server community ansible-public RO
+          -  snmp-server community ansible-private RW
+    - name: Configure name servers
+    - name: Configure logging
+    - name: Configure interface IP
+    - name: Configure routing protocol
