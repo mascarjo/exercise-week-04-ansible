@@ -7,4 +7,11 @@
 
     - name: Set hostname
       cisco.ios.ios_config:
-        lines: hostname jm{{ inventory_hostname }}
+        lines: hostname {{ inventory_hostname }}
+    - name: Set login banner
+      cisco.ios.ios_banner:
+        banner: login
+        text: |
+          This is Johans' login banner
+          Welcome to {{ inventory_hostname }}
+        state: present
