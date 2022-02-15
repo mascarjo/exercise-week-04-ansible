@@ -67,18 +67,18 @@
               address: 192.168.20.0
               wildcard_bits: 0.0.0.255
               area: 0
-    - name: Enable interface-level OSPF
-      cisco.ios.ios_ospf_interfaces:
-        config:
-        - name: GigabitEthernet1
-          address_family:
-            - afi: ipv4
-              process:
-                id: 1
-                area_id: 0
-        - name: GigabitEthernet2
-          address_family:
-            - afi: ipv4
-              process:
-                id: 1
-                area_id: 0
+ #   - name: Enable interface-level OSPF
+  #    cisco.ios.ios_ospf_interfaces:
+   #     config:
+    #    - name: GigabitEthernet1
+     #     address_family:
+      #      - afi: ipv4
+       #       process:
+        #        id: 1
+         #       area_id: 0
+        #- name: GigabitEthernet2
+         # address_family:
+          #  - afi: ipv4
+           #   process:
+            #    id: 1
+             #   area_id: 0
