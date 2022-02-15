@@ -45,7 +45,6 @@
         - name: GigabitEthernet2
           ipv4:
           - address: "{{ private_ip }}"
-      state: merged
     - name: Enable router-level OSPF
       cisco.ios.ios_ospf_ospfv2:
         config:
