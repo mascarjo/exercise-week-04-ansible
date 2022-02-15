@@ -20,7 +20,58 @@
         commands:
           -  snmp-server community ansible-public RO
           -  snmp-server community ansible-private RW
+          -  snmp-server host 192.168.20.1 public
+          -  snmp-server enable traps
     - name: Configure name servers
-    - name: Configure logging
+      cisco.ios.ios_system:
+        name_servers:
+        -  8.8.8.8
+        -  8.8.4.4
+    - name: Turn on logging
+      cisco.ios.ios_logging:
+        dest: console
+        facility: local17
+        level: debugging
+        state: present
+    - name: Configure NTP
+      cisco.ios.ios_ntp_global:
+        config:
+        - server: 8.8.8.8
+        - version: 2
+        - logging: false
     - name: Configure interface IP
-    - name: Configure routing protocol
+      cisco.ios.ios_l3_interfaces:
+      - name: GigabitEthernet2
+        ipv4:
+        - address: {{ private_ip }}
+        state: merged
+    - name: Enable router-level OSPF
+      cisco.ios.ios_ospf_ospfv2:
+        config:
+          processes:
+          - process_id: 1
+            areas:
+            - area_id: '0'
+            network: 
+              address: {{ private_ip }} 
+              wildcard_bits: 0.0.0.255
+              area: 0
+            network:
+              address: 192.168.20.0
+              wildcard_bits: 0.0.0.255
+              area: 0
+    - name: Enable interface-level OSPF
+      cisco.ios.ios_ospf_interfaces:
+        config:
+        - name: GigabitEthernet1:
+          address_family:
+            - afi: ipv4
+              process:
+                id: 1
+                area_id: 0
+        - name: GigabitEthernet2:
+          address_family:
+            - afi: ipv4
+              process:
+                id: 1
+                area_id: 0
