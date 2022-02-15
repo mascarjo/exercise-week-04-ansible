@@ -7,7 +7,7 @@ cisco
 
 [cisco]
 jmr1 ansible_host=192.168.2.36 private_ip=192.168.8.1/24 private_ip_nomask=192.168.8.1
-jmr2 ansible_host-192.168.2.37 private_ip=192.168.8.2/24 private_ip_nomask=192.168.8.2
+jmr2 ansible_host=192.168.2.37 private_ip=192.168.8.2/24 private_ip_nomask=192.168.8.2
 
 [cisco:vars]
 ansible_user=johans
