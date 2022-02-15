@@ -41,10 +41,11 @@
         - logging: false
     - name: Configure interface IP
       cisco.ios.ios_l3_interfaces:
-      - name: GigabitEthernet2
-        ipv4:
-        - address: "{{ private_ip }}"
-        state: merged
+        config:
+        - name: GigabitEthernet2
+          ipv4:
+          - address: "{{ private_ip }}"
+      state: merged
     - name: Enable router-level OSPF
       cisco.ios.ios_ospf_ospfv2:
         config:
