@@ -35,10 +35,9 @@
         state: present
     - name: Configure NTP
       cisco.ios.ios_ntp:
-        config:
-        - server: 8.8.8.8
-        - version: 2
-        - logging: false
+        server: 8.8.8.8
+        logging: false
+        state: present
     - name: Configure interface IP
       cisco.ios.ios_l3_interfaces:
         config:
