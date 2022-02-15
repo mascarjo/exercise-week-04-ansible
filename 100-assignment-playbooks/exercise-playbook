@@ -43,7 +43,7 @@
       cisco.ios.ios_l3_interfaces:
       - name: GigabitEthernet2
         ipv4:
-        - address: "{{ private_ip }}"
+        - address: 192.168.20.1
         state: merged
     - name: Enable router-level OSPF
       cisco.ios.ios_ospf_ospfv2:
