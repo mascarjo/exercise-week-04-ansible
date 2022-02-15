@@ -6,8 +6,8 @@ ansible_password=P@ssw0rd
 cisco
 
 [cisco]
-jmr1 ansible_host=192.168.2.36 private_ip=192.168.8.1/24
-jmr2 private_ip=192.168.8.2/24
+jmr1 ansible_host=192.168.2.36 private_ip=192.168.8.1/24 private_ip_nomask=192.168.8.1
+jmr2 private_ip=192.168.8.2/24 private_ip_nomask=192.168.8.2
 
 [cisco:vars]
 ansible_user=johans
