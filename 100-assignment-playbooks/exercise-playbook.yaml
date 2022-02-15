@@ -1,0 +1,54 @@
+---
+- name:  Assignment playbooks
+  hosts: cisco
+  gather_facts: no
+  
+  tasks:
+
+    - name: Set hostname
+      cisco.ios.ios_config:
+        lines: hostname {{ inventory_hostname }}
+    - name: Set login banner
+      cisco.ios.ios_banner:
+        banner: login
+        text: |
+          This is Johans' login banner
+          Welcome to {{ inventory_hostname }}
+        state: present
+    - name: Configure SNMP
+      cisco.ios.config:
+        commands:
+          -  snmp-server community ansible-public RO
+          -  snmp-server community ansible-private RW
+          -  snmp-server host 192.168.20.1 public
+          -  snmp-server enable traps
+    - name: Configure name servers
+      cisco.ios.ios_system:
+        name_servers:
+        -  8.8.8.8
+        -  8.8.4.4
+    - name: Turn on logging
+      cisco.ios.ios_logging:
+        dest: console
+        facility: local7
+        level: debugging
+        state: present
+    - name: Configure NTP
+      cisco.ios.ios_ntp:
+        server: 8.8.8.8
+        logging: false
+        state: present
+    - name: Configure interface IP
+      cisco.ios.ios_l3_interfaces:
+        config:
+        - name: GigabitEthernet2
+          ipv4:
+          - address: "{{ private_ip }}"
+    - name: Enable router-level OSPF
+      cisco.ios.ios_config:
+        lines:
+        - network 192.168.20.0 0.0.0.255 area 0
+        - network 192.168.2.0 0.0.0.255 area 0
+        parents: router ospf 1
+    
+
