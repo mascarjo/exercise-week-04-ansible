@@ -45,11 +45,11 @@
           ipv4:
           - address: "{{ private_ip }}"
     - name: Enable router-level OSPF
-       cisco.ios.ios_config:
-         lines:
-         - network 192.168.20.0 0.0.0.255 area 0
-         - network 192.168.2.0 0.0.0.255 area 0
-         parents: router ospf 1
+      cisco.ios.ios_config:
+        lines:
+        - network 192.168.20.0 0.0.0.255 area 0
+        - network 192.168.2.0 0.0.0.255 area 0
+        parents: router ospf 1
     
 
 
