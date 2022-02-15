@@ -30,7 +30,7 @@
     - name: Turn on logging
       cisco.ios.ios_logging:
         dest: console
-        facility: local17
+        facility: local7
         level: debugging
         state: present
     - name: Configure NTP
