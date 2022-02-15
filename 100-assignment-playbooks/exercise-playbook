@@ -34,7 +34,7 @@
         level: debugging
         state: present
     - name: Configure NTP
-      cisco.ios.ios_ntp_global:
+      cisco.ios.ios_ntp:
         config:
         - server: 8.8.8.8
         - version: 2
