@@ -45,7 +45,7 @@
           ipv4:
           - address: "{{ private_ip }}"
     - name: Enable router-level OSPF
-      cisco.ios.ios_ospf_ospfv2:
+      cisco.ios.ios_ospfv2:
         config:
           processes:
           - process_id: 1
@@ -55,6 +55,12 @@
               address: "{{ private_ip_nomask }}"
               wildcard_bits: 0.0.0.255
               area: 0
+    # - name: Enable router-level OSPF
+    #    cisco.ios.ios_config:
+    #      lines:
+    #      - network 192.168.20.0 0.0.0.255 area 0
+    #      - network 192.168.2.0 0.0.0.255 area 0
+    #      parents: router ospf 1
     # - name: Enable router-level OSPF for management network
     #   cisco.ios.ios_ospf_ospfv2:
     #     config:
