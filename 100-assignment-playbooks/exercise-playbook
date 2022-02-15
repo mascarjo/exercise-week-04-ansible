@@ -43,7 +43,7 @@
       cisco.ios.ios_l3_interfaces:
       - name: GigabitEthernet2
         ipv4:
-        - address: {{ private_ip }}
+        - address: "{{ private_ip }}"
         state: merged
     - name: Enable router-level OSPF
       cisco.ios.ios_ospf_ospfv2:
@@ -53,7 +53,7 @@
             areas:
             - area_id: '0'
             network: 
-              address: {{ private_ip }} 
+              address: "{{ private_ip }}"
               wildcard_bits: 0.0.0.255
               area: 0
             network:
