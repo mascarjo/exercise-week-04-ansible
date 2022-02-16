@@ -4,10 +4,11 @@
   gather_facts: no
   
   tasks:
-
+#Set the hostname to the hostname listed in the inventory file
     - name: Set hostname
       cisco.ios.ios_config:
         lines: hostname {{ inventory_hostname }}
+#Sets a multiline login banner
     - name: Set login banner
       cisco.ios.ios_banner:
         banner: login
@@ -15,6 +16,7 @@
           This is Johans' login banner
           Welcome to {{ inventory_hostname }}
         state: present
+#Basic SNMP configuration pointing to PC on management network
     - name: Configure SNMP
       cisco.ios.ios_config:
         commands:
@@ -22,28 +24,33 @@
           -  snmp-server community ansible-private RW
           -  snmp-server host 192.168.20.1 public
           -  snmp-server enable traps
+#Basic name server configuration pointing to google servers
     - name: Configure name servers
       cisco.ios.ios_system:
         name_servers:
         -  8.8.8.8
         -  8.8.4.4
+#Configure logging on the routers
     - name: Turn on logging
       cisco.ios.ios_logging:
         dest: console
         facility: local7
         level: debugging
         state: present
+#Configure NTP using minimal configurations
     - name: Configure NTP
       cisco.ios.ios_ntp:
         server: 8.8.8.8
         logging: false
         state: present
+#Configure the vmnet10 interfaces (g2/0) on both routers using the layer 3 ansible package using the private_ip variable contained in the host file
     - name: Configure interface IP
       cisco.ios.ios_l3_interfaces:
         config:
         - name: GigabitEthernet2
           ipv4:
           - address: "{{ private_ip }}"
+#Turn on router level ospf and add the two networks (management and vmnet10) to the ospf (process 1) and make the part of area 0
     - name: Enable router-level OSPF
       cisco.ios.ios_config:
         lines:
