@@ -20,5 +20,7 @@ ansible_become_method=enable
 ansible_sudo_password=P@ssword
 
 [dc1]
-jmr1
-jmr2
+jmr1lab2
+jmr2lab2
+jmr3lab2
+jmr4lab2

@@ -1,0 +1,10 @@
+---
+
+ipset:
+  - conf t
+  - int g2/0
+  - ip address 192.168.8.2 255.255.255.0
+  - no shut
+  - int g3/0
+  - ip address 192.168.9.1 255.255.255.0
+  - no shut
