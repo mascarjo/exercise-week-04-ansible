@@ -25,17 +25,12 @@
         state: present
 #Configure the vmnet10 interfaces (g2/0) on both routers using the layer 3 ansible package using the private_ip variable contained in the host file
     - name: Configure interface IP
-      cisco.ios.ios_l3_interfaces:
-        config:
-        - name: GigabitEthernet2
-          ipv4:
-          - address: "{{ private_ip }}"
+      cisco.ios.ios_config:
+        lines: "{{ ipset }}"
 #Turn on router level ospf and add the two networks (management and vmnet10) to the ospf (process 1) and make the part of area 0
     - name: Enable router-level OSPF
       cisco.ios.ios_config:
-        lines:
-        - network 192.168.20.0 0.0.0.255 area 0
-        - network 192.168.2.0 0.0.0.255 area 0
+        lines: "{{ ospf_config }}"
         parents: router ospf 1
     
 
