@@ -16,10 +16,10 @@
         msg: "The hostname of this router is: {{ansible_net_hostname}}"
     - name: Display interface g1 info
       debug:
-        msg: "The GigabitEthernet1 interface is up {{ansible_net_interfaces.GigabitEthernet1.lineprotocol}}"
+        msg: "The status of the GigabitEthernet1 interface is: {{ansible_net_interfaces.GigabitEthernet1.lineprotocol}}"
     - name: Display interface g2 info
       debug:
-        msg: "The GigabitEthernet2 interface is up {{ansible_net_interfaces.GigabitEthernet1.lineprotocol}}"
+        msg: "The status of the GigabitEthernet2 interface is: {{ansible_net_interfaces.GigabitEthernet2.lineprotocol}}"
     - name: Display interface g3 info
       debug:
-        msg: "The GigabitEthernet3 interface is: {{ansible_net_interfaces.GigabitEthernet1.lineprotocol}}"
+        msg: "The status of the GigabitEthernet3 interface is: {{ansible_net_interfaces.GigabitEthernet3.lineprotocol}}"
