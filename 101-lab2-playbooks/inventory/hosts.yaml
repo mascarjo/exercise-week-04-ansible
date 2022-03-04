@@ -1,6 +1,6 @@
 [all:vars]
 ansible_user=johans
-ansible_password=P@ssw0rd
+ansible_password=P@ssword
 
 [routers:children]
 cisco
