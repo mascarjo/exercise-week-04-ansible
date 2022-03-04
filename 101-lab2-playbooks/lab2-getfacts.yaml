@@ -11,3 +11,6 @@
     - name: Display Model number 
       debug:
         msg: "The IOS model is {{ansible_net_model}}"
+    - name: Display router hostname
+      debug:
+        msg: "The hostname of this router is: {{ansible_net_hostname}}"
